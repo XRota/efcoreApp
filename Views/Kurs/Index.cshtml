@@ -1,0 +1,37 @@
+@model IEnumerable<Kurs>
+
+    <h2 class="mb-3">Kurslar</h2>
+    <a asp-conroller="Kurs" asp-action="Create" class="btn btn-primary btn-sm">Yeni Kurs Oluştur</a>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- DisplayNameFor Listenin adını alırken kullanıyor -->
+                <th style="width: 150px; ">@Html.DisplayNameFor(m => m.KursId)</th> 
+                <th >@Html.DisplayNameFor(m => m.Baslik)</th>
+                <th >@Html.DisplayNameFor(m => m.Ogretmen.AdSoyad)</th>
+
+
+
+                
+            </tr>
+        </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <!-- DisplayFor Listenin İçeriğini almak için kullanıyor -->
+            <td>@Html.DisplayFor(modelItem => item.KursId)</td>
+            <td>@Html.DisplayFor(modelItem => item.Baslik)</td>
+            <td>@Html.DisplayFor(modelItem => item.Ogretmen.AdSoyad)</td>
+
+            <td>
+                <a asp-controller="Kurs" asp-action="Edit" asp-route-id="@item.KursId" class="btn btn-sm btn-primary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.KursId" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
